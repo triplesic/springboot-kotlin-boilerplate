@@ -1,6 +1,6 @@
 buildscript {
 	ext {
-		kotlinVersion = '1.1.4-3'
+		kotlinVersion = '1.1.50'
 		springBootVersion = '2.0.0.M4'
 	}
 	repositories {
@@ -39,12 +39,11 @@ repositories {
 
 
 dependencies {
-	compile('org.springframework.boot:spring-boot-starter-data-mongodb')
 	compile('org.springframework.boot:spring-boot-starter-web')
-	compile('org.springframework.boot:spring-boot-starter-webflux')
+	compile("org.springframework.boot:spring-boot-starter-data-jpa")
 	compile("org.jetbrains.kotlin:kotlin-stdlib-jre8:${kotlinVersion}")
 	compile("org.jetbrains.kotlin:kotlin-reflect:${kotlinVersion}")
 	runtime('mysql:mysql-connector-java')
+	compile("com.fasterxml.jackson.module:jackson-module-kotlin")
 	testCompile('org.springframework.boot:spring-boot-starter-test')
-	testCompile('io.projectreactor:reactor-test')
 }
