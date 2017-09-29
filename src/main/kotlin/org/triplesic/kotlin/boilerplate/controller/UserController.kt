@@ -3,13 +3,17 @@ package org.triplesic.kotlin.boilerplate.controller
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.bind.annotation.*
+import org.triplesic.kotlin.boilerplate.entity.User
+import org.triplesic.kotlin.boilerplate.repository.UserRepository
 
-@RestController class UserController @Autowired constructor(){
-    @GetMapping("/users")
-    fun getAllUsers(): ResponseEntity<Map<Int,String>>{
+@RestController
+@RequestMapping("/users")
+class UserController @Autowired constructor(val userRepo: UserRepository){
 
-        return ResponseEntity.ok(mapOf(1 to "A", 2 to "B"))
-    }
+    @GetMapping
+    fun getAllUsers() = userRepo.findAll()
+
+    @PostMapping
+    fun addNewUser(@RequestBody user: User) = userRepo.save(user)
 }
