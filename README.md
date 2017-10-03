@@ -6,7 +6,7 @@ How to
 
 1. build and run the project with Gradle
 
-2. call `http://localhost:8080/users` on the brownser the page will redirect to login form
+2. call `http://localhost:8080/users` on the browser, the page will redirect to login form
 
 3. use username and password below to access the api
   username: `admin`
