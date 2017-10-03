@@ -5,6 +5,7 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter
 
 @Configuration
 @EnableWebSecurity
@@ -12,14 +13,18 @@ class SecurityConfig : WebSecurityConfigurerAdapter() {
 
     override fun configure(http: HttpSecurity?) {
         http
+                ?.httpBasic()
+                ?.and()
                 ?.csrf()?.disable()
                 ?.authorizeRequests()
                 ?.anyRequest()
                 ?.authenticated()
                 ?.and()
                 ?.formLogin()
-                ?.and()
-                ?.httpBasic()
+
+                //?.and()
+                //?.addFilterBefore(JwtAuthenticationTokenFilter(), UsernamePasswordAuthenticationFilter::class.java)
+                TODO("uncomment add filter before for implement your token authentication logic")
     }
 
     override fun configure(auth: AuthenticationManagerBuilder?) {
