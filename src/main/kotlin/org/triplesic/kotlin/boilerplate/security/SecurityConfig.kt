@@ -24,7 +24,7 @@ class SecurityConfig : WebSecurityConfigurerAdapter() {
 
                 //?.and()
                 //?.addFilterBefore(JwtAuthenticationTokenFilter(), UsernamePasswordAuthenticationFilter::class.java)
-                TODO("uncomment add filter before for implement your token authentication logic")
+                //TODO("uncomment add filter before for implement your token authentication logic")
     }
 
     override fun configure(auth: AuthenticationManagerBuilder?) {
