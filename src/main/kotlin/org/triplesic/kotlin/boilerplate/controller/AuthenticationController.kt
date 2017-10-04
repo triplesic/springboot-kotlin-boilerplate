@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.CrossOrigin
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RestController
-import org.triplesic.kotlin.boilerplate.Services.AuthenticationService
+import org.triplesic.kotlin.boilerplate.services.AuthenticationService
 import org.triplesic.kotlin.boilerplate.entity.User
 import org.triplesic.kotlin.boilerplate.repository.UserRepository
 import javax.validation.Valid

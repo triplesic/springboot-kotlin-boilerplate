@@ -1,8 +1,8 @@
-package org.triplesic.kotlin.boilerplate.Services
+package org.triplesic.kotlin.boilerplate.services
 
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
-import org.triplesic.kotlin.boilerplate.Utils.EncryptUtil
+import org.triplesic.kotlin.boilerplate.utils.EncryptUtil
 import org.triplesic.kotlin.boilerplate.entity.Token
 import org.triplesic.kotlin.boilerplate.entity.User
 import org.triplesic.kotlin.boilerplate.repository.TokenRepository

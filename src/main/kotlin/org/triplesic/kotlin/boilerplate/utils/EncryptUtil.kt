@@ -1,9 +1,8 @@
-package org.triplesic.kotlin.boilerplate.Utils
+package org.triplesic.kotlin.boilerplate.utils
 
 import java.security.NoSuchAlgorithmException
 import java.security.SecureRandom
 import java.security.spec.InvalidKeySpecException
-import java.security.spec.KeySpec
 import java.util.Arrays
 
 import javax.crypto.SecretKeyFactory
