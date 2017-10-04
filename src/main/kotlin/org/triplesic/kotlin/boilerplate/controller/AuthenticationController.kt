@@ -16,9 +16,13 @@ import javax.validation.Valid
 @CrossOrigin(origins = arrayOf("*"))
 class AuthenticationController @Autowired constructor(val userRepository: UserRepository, val authenticationService: AuthenticationService) {
 
-    @PostMapping("/login")
+    @PostMapping("/loginToApp")
     fun login(@RequestBody user: User): ResponseEntity<*> {
-        return ResponseEntity.ok("login")
+        val canLogin = authenticationService.login(user)
+        return when (canLogin) {
+            true -> ResponseEntity.ok("Login successful")
+            false -> ResponseEntity<String>("Incorrect username or password", HttpStatus.BAD_REQUEST)
+        }
     }
 
     @PostMapping("/register")

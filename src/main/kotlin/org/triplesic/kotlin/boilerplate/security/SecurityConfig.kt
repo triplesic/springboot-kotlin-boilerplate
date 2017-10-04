@@ -17,7 +17,7 @@ class SecurityConfig : WebSecurityConfigurerAdapter() {
                 ?.and()
                 ?.csrf()?.disable()
                 ?.authorizeRequests()
-                ?.antMatchers(HttpMethod.POST, "/login", "/register")?.hasRole("GUEST")
+                ?.antMatchers(HttpMethod.POST, "/register", "/loginToApp")?.hasRole("GUEST")
                 ?.anyRequest()?.authenticated()
                 ?.and()
                 ?.formLogin()
