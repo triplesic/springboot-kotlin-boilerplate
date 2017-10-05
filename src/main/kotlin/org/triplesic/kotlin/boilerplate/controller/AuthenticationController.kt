@@ -34,4 +34,14 @@ class AuthenticationController @Autowired constructor(val userRepository: UserRe
             return ResponseEntity<String>("The username already exist", null, HttpStatus.BAD_REQUEST)
         }
     }
+
+    @PostMapping("/logoutFromApp")
+    fun logout(@RequestBody user: User): ResponseEntity<*>{
+        val result = authenticationService.logout(user)
+
+        return when (result) {
+            true -> ResponseEntity.ok("Logout successful")
+            false -> ResponseEntity<String>("Something went wrong", HttpStatus.BAD_REQUEST)
+        }
+    }
 }

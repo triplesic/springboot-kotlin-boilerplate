@@ -67,4 +67,16 @@ class AuthenticationService @Autowired constructor(val userRepository: UserRepos
         })
 
     }
+
+    fun logout(user: User) : Boolean {
+        //1. check exist user
+        var existUser = userRepository.findByUsername(user.username).orElse(null)
+        if (existUser == null) return false
+
+        //3. expire old token
+        val oldTokenList = tokenRepository.findByUserIdAndExpiredDateGreaterThan(existUser.id, LocalDateTime.now())
+        expiredOldToken(oldTokenList)
+
+        return true
+    }
 }
