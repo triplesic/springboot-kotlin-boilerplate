@@ -14,7 +14,7 @@ class JwtAuthenticationTokenFilter internal constructor(private val authenticati
         if (verifyToken(token)) {
             filterChain?.doFilter(request, response)
         } else {
-            response?.setStatus(401)
+            response?.setStatus(401,"token was not found or invalid")
             return
         }
     }
