@@ -6,4 +6,5 @@ import java.time.LocalDateTime
 
 interface TokenRepository : JpaRepository<Token, Long> {
     fun findByUserIdAndExpiredDateGreaterThan(userId: Long, expiredDate: LocalDateTime): Iterable<Token>
+    fun findByValueAndExpiredDateGreaterThan(value: String, expiredDate: LocalDateTime): Iterable<Token>
 }

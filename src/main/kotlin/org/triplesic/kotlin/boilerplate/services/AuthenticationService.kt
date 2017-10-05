@@ -58,8 +58,7 @@ class AuthenticationService @Autowired constructor(val userRepository: UserRepos
 
     fun expiredOldToken(tokenList: Iterable<Token>) {
 
-        tokenList.forEach(action = {
-            token ->
+        tokenList.forEach(action = { token ->
             val now = LocalDateTime.now()
             token.expiredDate = now
             token.revisedDate = now
@@ -68,7 +67,7 @@ class AuthenticationService @Autowired constructor(val userRepository: UserRepos
 
     }
 
-    fun logout(user: User) : Boolean {
+    fun logout(user: User): Boolean {
         //1. check exist user
         var existUser = userRepository.findByUsername(user.username).orElse(null)
         if (existUser == null) return false
@@ -78,5 +77,12 @@ class AuthenticationService @Autowired constructor(val userRepository: UserRepos
         expiredOldToken(oldTokenList)
 
         return true
+    }
+
+    fun isValidToken(token: String): Boolean {
+        var validTokenList = tokenRepository.findByValueAndExpiredDateGreaterThan(token, LocalDateTime.now())
+        if (validTokenList.count() > 0)
+            return true
+        return false
     }
 }
