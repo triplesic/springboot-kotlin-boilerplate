@@ -18,30 +18,34 @@ class AuthenticationController @Autowired constructor(val userRepository: UserRe
 
     @PostMapping("/loginToApp")
     fun login(@RequestBody user: User): ResponseEntity<*> {
-        val canLogin = authenticationService.login(user)
-        return when (canLogin) {
-            true -> ResponseEntity.ok("Login successful")
-            false -> ResponseEntity<String>("Incorrect username or password", HttpStatus.BAD_REQUEST)
+        val resultMsg = authenticationService.login(user)
+
+        return when (resultMsg.code) {
+            HttpStatus.OK -> ResponseEntity<Any>(resultMsg, resultMsg.code as HttpStatus)
+            HttpStatus.BAD_REQUEST -> ResponseEntity<Any>(resultMsg, resultMsg.code as HttpStatus)
+            else -> ResponseEntity<Any>(resultMsg, resultMsg.code as HttpStatus)
         }
     }
 
     @PostMapping("/register")
     fun registerNewUser(@RequestBody @Valid user: User): ResponseEntity<*> {
-        val result = authenticationService.registerNewUser(user)
-        if (result) {
-            return ResponseEntity.ok("User has been created")
-        } else {
-            return ResponseEntity<String>("The username already exist", null, HttpStatus.BAD_REQUEST)
+        val resultMsg = authenticationService.registerNewUser(user)
+
+        return when (resultMsg.code) {
+            HttpStatus.OK -> ResponseEntity<Any>(resultMsg, resultMsg.code as HttpStatus)
+            HttpStatus.BAD_REQUEST -> ResponseEntity<Any>(resultMsg, resultMsg.code as HttpStatus)
+            else -> ResponseEntity<Any>(resultMsg, resultMsg.code as HttpStatus)
         }
     }
 
     @PostMapping("/logoutFromApp")
-    fun logout(@RequestBody user: User): ResponseEntity<*>{
-        val result = authenticationService.logout(user)
+    fun logout(@RequestBody user: User): ResponseEntity<*> {
+        val resultMsg = authenticationService.logout(user)
 
-        return when (result) {
-            true -> ResponseEntity.ok("Logout successful")
-            false -> ResponseEntity<String>("Something went wrong", HttpStatus.BAD_REQUEST)
+        return when (resultMsg.code) {
+            HttpStatus.OK -> ResponseEntity<Any>(resultMsg, resultMsg.code as HttpStatus)
+            HttpStatus.BAD_REQUEST -> ResponseEntity<Any>(resultMsg, resultMsg.code as HttpStatus)
+            else -> ResponseEntity<Any>(resultMsg, resultMsg.code as HttpStatus)
         }
     }
 }

@@ -1,7 +1,9 @@
 package org.triplesic.kotlin.boilerplate.services
 
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.http.HttpStatus
 import org.springframework.stereotype.Service
+import org.triplesic.kotlin.boilerplate.dto.Message
 import org.triplesic.kotlin.boilerplate.utils.EncryptUtil
 import org.triplesic.kotlin.boilerplate.entity.Token
 import org.triplesic.kotlin.boilerplate.entity.User
@@ -12,12 +14,12 @@ import java.time.LocalDateTime
 
 @Service
 class AuthenticationService @Autowired constructor(val userRepository: UserRepository, val tokenRepository: TokenRepository) {
-    fun registerNewUser(user: User): Boolean {
+    fun registerNewUser(user: User): Message {
 
         //1. check duplicate existUser
         var existUser = userRepository.findByUsername(user.username).orElse(null)
         if (existUser != null) {
-            return false
+            return Message(null, "username already exist", HttpStatus.BAD_REQUEST)
         } else {
             //2. encrypt password
             val passSalt = EncryptUtil().generateSalt()
@@ -26,19 +28,21 @@ class AuthenticationService @Autowired constructor(val userRepository: UserRepos
             user.password = encryptedPass
             user.passwordNoEncrypted = ""
             userRepository.save(user)
-            return true
+            return Message(mapOf("username" to user.username), "User has been created", HttpStatus.OK)
         }
     }
 
-    fun login(user: User): Boolean {
+    fun login(user: User): Message {
 
         //1. check exist user
         var existUser = userRepository.findByUsername(user.username).orElse(null)
-        if (existUser == null) return false
+        if (existUser == null)
+            return Message(null, "Username or password is incorrect", HttpStatus.BAD_REQUEST)
 
         //2. check correct password
         val isCorrectPassword = EncryptUtil().authenticate(user.passwordNoEncrypted, existUser.password!!, existUser.passSalt!!)
-        if (!isCorrectPassword) return false
+        if (!isCorrectPassword)
+            return Message(null, "Username or password is incorrect", HttpStatus.BAD_REQUEST)
 
         //3. expire old token
         val oldTokenList = tokenRepository.findByUserIdAndExpiredDateGreaterThan(existUser.id, LocalDateTime.now())
@@ -52,8 +56,8 @@ class AuthenticationService @Autowired constructor(val userRepository: UserRepos
         newToken.value = tokenStr
         newToken.expiredDate = LocalDateTime.now().plusDays(1L)
 
-        tokenRepository.save(newToken)
-        return true
+        val savedToken = tokenRepository.save(newToken)
+        return Message(mapOf("token" to savedToken.value), "Login successful", HttpStatus.OK)
     }
 
     fun expiredOldToken(tokenList: Iterable<Token>) {
@@ -67,16 +71,17 @@ class AuthenticationService @Autowired constructor(val userRepository: UserRepos
 
     }
 
-    fun logout(user: User): Boolean {
+    fun logout(user: User): Message {
         //1. check exist user
         var existUser = userRepository.findByUsername(user.username).orElse(null)
-        if (existUser == null) return false
+        if (existUser == null)
+            return Message(null, "Username is incorrect", HttpStatus.BAD_REQUEST)
 
         //3. expire old token
         val oldTokenList = tokenRepository.findByUserIdAndExpiredDateGreaterThan(existUser.id, LocalDateTime.now())
         expiredOldToken(oldTokenList)
 
-        return true
+        return Message(mapOf("username" to user.username), "Logout successful", HttpStatus.OK)
     }
 
     fun isValidToken(token: String): Boolean {
