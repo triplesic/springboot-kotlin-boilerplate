@@ -13,3 +13,12 @@ How to
   password: `userX`
   
 4. to call the API via `curl`  or `Postman`, please use Basic Auth with the same user & pass
+
+---- Build & Run on docker ----
+
+1. build a docker container using command below
+`docker build -t triplesic/kotlin-sample .`
+
+2. create new container instant using command below
+`docker run -d --net="host" -p 8080:8080 -v /<YOUR_CONFIG_PATH>:/config --name springboot-kotlin-01 triplesic/kotlin-sample`
+* please change "<YOUR_CONFIG_PATH>" to the real application.properties path
