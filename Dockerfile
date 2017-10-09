@@ -1,5 +1,5 @@
 FROM triplesic/minimal-openjdk8:latest
-ADD out/artifacts/springboot_kotlin_boilerplate_jar/springboot-kotlin-boilerplate.jar kotlin_sample_service.jar
+ADD build/libs/springboot-kotlin-boilerplate-0.0.1-SNAPSHOT.jar kotlin_sample_service.jar
 
 RUN mkdir -p /config
 

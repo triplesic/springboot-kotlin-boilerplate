@@ -16,9 +16,26 @@ How to
 
 ---- Build & Run on docker ----
 
-1. build a docker container using command below
-`docker build -t triplesic/kotlin-sample .`
+1. go to directory that contains 'Dockerfile' then build a docker container using command below
+`docker build -t triplesic/springboot-kotlin-boilerplate .`
 
 2. create new container instant using command below
-`docker run -d --net="host" -p 8080:8080 -v /<YOUR_CONFIG_PATH>:/config --name springboot-kotlin-01 triplesic/kotlin-sample`
+
+run on ubuntu cloud host
+`docker run -d --net="host" -p 8080:8080 -v <YOUR_CONFIG_PATH>:/config --name springboot-kotlin-01 triplesic/springboot-kotlin-boilerplate`
+
+run on mac localhost
+`docker run -d -p 8080:8080 -v <YOUR_CONFIG_PATH>:/config --name springboot-kotlin-01 triplesic/springboot-kotlin-boilerplate`
+
+
 * please change "<YOUR_CONFIG_PATH>" to the real application.properties path
+
+
+-- remark --
+when you call other 'localhost' api(s) via  docker on Mac
+you have change 'localhost' to 'docker.for.mac.localhost'
+
+such as MySql url
+jdbc:mysql://localhost/factory
+you have to change to
+jdbc:mysql://docker.for.mac.localhost/factory
