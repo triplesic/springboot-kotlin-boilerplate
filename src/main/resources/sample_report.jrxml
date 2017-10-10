@@ -1,60 +1,44 @@
-<?xml version = "1.0" encoding = "UTF-8"?>
-<!DOCTYPE jasperReport PUBLIC "//JasperReports//DTD Report Design//EN"
-        "http://jasperreports.sourceforge.net/dtds/jasperreport.dtd">
-
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports"
-              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-              xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports
-   http://jasperreports.sourceforge.net/xsd/jasperreport.xsd"
-              name="report2" pageWidth="595" pageHeight="842"
-              columnWidth="555" leftMargin="20" rightMargin="20"
-              topMargin="20" bottomMargin="20">
-
-    <field name="Id" class="java.lang.Long">
-        <fieldDescription><![CDATA[id]]></fieldDescription>
-    </field>
-
-    <field name="Username" class="java.lang.String">
-        <fieldDescription><![CDATA[username]]></fieldDescription>
-    </field>
-
-    <field name="Name" class="java.lang.String">
-        <fieldDescription><![CDATA[name]]></fieldDescription>
-    </field>
-
-    <detail>
-        <band height="15">
-
-            <textField>
-                <reportElement x="0" y="0" width="50" height="15" />
-
-                <textElement textAlignment="Right" verticalAlignment="Middle"/>
-
-                <textFieldExpression class="java.lang.Long">
-                    <![CDATA[$F{Id}]]>
-                </textFieldExpression>
-            </textField>
-
-            <textField>
-                <reportElement x="150" y="0" width="100" height="15" />
-
-                <textElement textAlignment="Left" verticalAlignment="Middle"/>
-
-                <textFieldExpression class="java.lang.String">
-                    <![CDATA[$F{Username}]]>
-                </textFieldExpression>
-            </textField>
-
-            <textField>
-                <reportElement x="200" y="0" width="100" height="15"/>
-                <textElement textAlignment="Right" verticalAlignment="Middle"/>
-
-                <textFieldExpression class="java.lang.Integer">
-                    <![CDATA[$F{Name}]]>
-                </textFieldExpression>
-            </textField>
-
-        </band>
-    </detail>
-
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.4.0.final using JasperReports Library version 6.4.1  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="typewriter_book_cover" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="595" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="c50b24eb-eb33-413f-8e75-e7e20a5341fd">
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.topMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.bottomMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.leftMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.rightMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
+	<property name="ireport.callouts" value="callouts.2.fg=0,0,0\ncallouts.1.text=You can dynamically specify a title\nby setting the default value of the\nBookTitle parameter, or transform\nthis text field in a static text.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\ncallouts.1.fg=0,0,0\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\ncallouts.2.text=You can dynamically specify a subtitle\nby setting the default value of the\nBookTitle parameter, or transform\nthis text field in a static text.\ncallouts.2.bg=255,255,0\ncallouts.2.bounds=650,210,219,70\ncallouts.1.pins=587,113\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\ncallouts.1.bounds=650,70,220,80\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\ncallouts.1.bg=255,255,0\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\ncallouts.2.pins=375,177\n"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<parameter name="BookTitle" class="java.lang.String">
+		<defaultValueExpression><![CDATA["Report Book Template"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="BookSubTitle" class="java.lang.String">
+		<defaultValueExpression><![CDATA["A sample template of a ReportBook"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<title>
+		<band height="841" splitType="Stretch">
+			<textField>
+				<reportElement positionType="Float" mode="Opaque" x="60" y="94" width="534" height="54" forecolor="#FFFFFF" backcolor="#000000" uuid="5bb49d37-ea51-4ca3-a18a-38cb0e66e0ee"/>
+				<box leftPadding="20" rightPadding="20"/>
+				<textElement>
+					<font fontName="Monospaced" size="40"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{BookTitle}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" x="60" y="154" width="534" height="30" uuid="7f58d454-cae0-4ebb-9ccd-c885124eb525"/>
+				<box leftPadding="20" rightPadding="20"/>
+				<textElement>
+					<font fontName="Monospaced" size="20"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{BookSubTitle}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
 </jasperReport>
