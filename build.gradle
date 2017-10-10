@@ -43,7 +43,6 @@ dependencies {
     compile group: 'com.lowagie', name: 'itext', version: '2.1.7'
     compile group: 'org.olap4j', name: 'olap4j', version: '1.2.0'
 
-
     compile group: 'com.itextpdf', name: 'itext-pdfa', version: '5.5.12'
     compile group: 'com.itextpdf', name: 'itextpdf', version: '5.5.12'
 
