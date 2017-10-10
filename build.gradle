@@ -39,6 +39,10 @@ repositories {
 
 
 dependencies {
+    compile group: 'net.sf.jasperreports', name: 'jasperreports', version: '6.4.1'
+    compile group: 'com.itextpdf', name: 'itextpdf', version: '5.5.12'
+    compile group: 'com.itextpdf', name: 'itext-pdfa', version: '5.5.12'
+
     compile('org.springframework.boot:spring-boot-starter-web')
     compile('org.springframework.boot:spring-boot-starter-security')
     compile("org.springframework.boot:spring-boot-starter-data-jpa")
