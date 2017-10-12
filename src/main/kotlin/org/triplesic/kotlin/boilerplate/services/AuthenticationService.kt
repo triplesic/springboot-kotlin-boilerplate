@@ -48,8 +48,9 @@ class AuthenticationService @Autowired constructor(val userRepository: UserRepos
         val oldTokenList = tokenRepository.findByUserIdAndExpiredDateGreaterThan(existUser.id, LocalDateTime.now())
         expiredOldToken(oldTokenList)
 
+
         //4. create token and save
-        val tokenStr = JwtTokenUtil().generateToken(user, LocalDateTime.now())
+        val tokenStr = JwtTokenUtil().generateToken(existUser, LocalDateTime.now())
 
         val newToken = Token()
         newToken.userId = existUser.id
