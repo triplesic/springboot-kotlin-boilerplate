@@ -9,7 +9,6 @@ import org.triplesic.kotlin.boilerplate.services.AuthenticationService
 class JwtAuthenticationTokenFilter internal constructor(private val authenticationService: AuthenticationService) : OncePerRequestFilter() {
 
     override fun doFilterInternal(request: HttpServletRequest?, response: HttpServletResponse?, filterChain: FilterChain?) {
-        println("----- do filter internal -----")
         val token = request?.getHeader("token")
         if (verifyToken(token)) {
             filterChain?.doFilter(request, response)
